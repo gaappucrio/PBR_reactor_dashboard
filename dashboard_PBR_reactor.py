@@ -4,14 +4,13 @@ from scipy.integrate import odeint
 import plotly.graph_objects as go
 import pandas as pd
 
-# Constantes
+
 W0 = 0
 dW = 0.001
 k0 = 185.3  # L2/mol.s.g
 Ea = 68800  # J/mol
 R = 8.314  # J/mol.K
 Kw = 0.53
-q = 15 / (60 * 1000000)  # L/s
 
 # Definição das equações diferenciais
 def EDOs(C, W, q, T):
@@ -19,6 +18,10 @@ def EDOs(C, W, q, T):
     CEtOH = C[1]
     Cw = C[2]
     k = k0 * np.exp(-Ea / (R * (T)))
+    # Proteção para evitar divisão por zero se q for muito pequeno
+    if q == 0:
+        return np.zeros(len(C))
+        
     r = k * CBA * CEtOH / ((1 + Kw * Cw) ** 2)
     dCdW = np.zeros(len(C))
     dCdW[0] = -r / q  # dCBAdt
@@ -120,6 +123,13 @@ with tab2:
         st.markdown("Temperatura (°C)", unsafe_allow_html=True)
         Temp = st.text_input("", "93.13", key='temp', help='Insira a temperatura em graus Celsius.')
         Temp = float(Temp) + 273.15  # Converter para Kelvin
+        
+        # --- NOVA VARIÁVEL ADICIONADA AQUI ---
+        # Caixa de texto do Streamlit para 'Vazão'
+        st.markdown("Vazão (uL/min)", unsafe_allow_html=True)
+        q_input = st.text_input("", "15", key='vazao', help='Insira a vazão volumétrica em uL/min.')
+        # Conversão de uL/min para L/s (conforme constante original)
+        q = float(q_input) / (60 * 1000000) 
 
     # Condições iniciais para C
     CEtOH0 = 9 * CBA0  # Concentração inicial de CEtOH
@@ -134,7 +144,7 @@ with tab2:
     with col1:
         # Adicionar botão para gerar o gráfico
         if st.button('Rodar Código'):
-            # Resolver as equações diferenciais
+            # Resolver as equações diferenciais passando o novo q
             C = odeint(EDOs, C0, W, args=(q, Temp))
             st.session_state['results'].append(C)
             # Manter apenas os dois últimos resultados
