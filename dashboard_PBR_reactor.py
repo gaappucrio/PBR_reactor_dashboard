@@ -190,15 +190,14 @@ with tab2:
         if 'results' in st.session_state and len(st.session_state['results']) > 0:
             fig = go.Figure()
             for i, result in enumerate(st.session_state['results']):
-                # Define se é a curva atual ou o histórico antigo
                 is_current = (i == len(st.session_state['results']) - 1)
                 
                 opacity = 1.0 if is_current else 0.4
                 name_suffix = '' if is_current else ' (antigo)'
-                
-                # ALTERAÇÃO: O modo agora é sempre 'lines' para manter tudo como linha contínua ou tracejada
-                # O estilo da linha antiga muda para 'dot' (pontilhado)
                 line_style = 'solid' if is_current else 'dot'
+                
+                # ALTERAÇÃO: A espessura (width) para as linhas normais é 2.5 e para o pontilhado 50% maior é 3.75
+                line_width = 2.5 if is_current else 3.75
                 
                 # Adiciona a curva do Ácido Benzóico (Travado em Azul)
                 fig.add_trace(go.Scatter(
@@ -207,7 +206,7 @@ with tab2:
                     mode='lines', 
                     name=f'Ácido Benzóico{name_suffix}', 
                     opacity=opacity,
-                    line=dict(color='blue', dash=line_style) # <-- Configuração de cor e pontilhado
+                    line=dict(color='blue', dash=line_style, width=line_width)
                 ))
                 
                 # Adiciona a curva do Etil Benzeno (Travado em Verde)
@@ -217,7 +216,7 @@ with tab2:
                     mode='lines', 
                     name=f'Etil Benzeno{name_suffix}', 
                     opacity=opacity,
-                    line=dict(color='green', dash=line_style) # <-- Configuração de cor e pontilhado
+                    line=dict(color='green', dash=line_style, width=line_width)
                 ))
                 
             fig.update_layout(
