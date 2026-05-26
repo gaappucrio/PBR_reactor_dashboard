@@ -44,7 +44,7 @@ with tab1:
     st.header("O que é um reator PBR (Packed Bed Reactor)")
     st.write("""
     <p style='font-size:20px'>
-    Imagine um reator tubular. Este tipo em específico leva em consideração que os reagentes são continuamente consumidos a medida que passam através do reator em estado estacionário. 
+    Imagine um reator tubular. Este tipo em específico leva em consideração que os reagentes são continuamente consumidos a medida que passam através do reator in estado estacionário. 
     </p>
     """, unsafe_allow_html=True)
     
@@ -124,12 +124,13 @@ with tab2:
     col1, col2 = st.columns([3, 7])
     
     with col1:
-        # Input numérico para a Massa de Catalisador (Sincronizado com dW=0.001)
+        # Input numérico para a Massa de Catalisador
         Massa_cat = st.number_input(
             "Massa de Catalisador (g)", 
-            value=0.1, 
+            value=0.100, 
             min_value=0.001, 
             step=0.001, 
+            format="%.3f", # Força o Streamlit a mostrar 3 casas decimais na caixa
             key='massa_cat', 
             help='Insira a massa do catalisador em gramas.'
         )
@@ -167,56 +168,38 @@ with tab2:
         # Conversão de uL/min para L/s
         q = q_input / (60 * 1000000) 
 
-    # --- ATUALIZAÇÃO DINÂMICA DO VETOR ---
-    # As variáveis abaixo dependem diretamente dos inputs acima e precisam rodar a cada alteração de valor
-    CEtOH0 = 9 * CBA0  # Razão molar excessiva estável 9:1
-    Cw0 = 0.0          # Concentração de água inicial nula
+    # --- PROCESSAMENTO EM TEMPO REAL ---
+    CEtOH0 = 9 * CBA0  
+    Cw0 = 0.0          
     C0 = [CBA0, CEtOH0, Cw0]
     
-    # Construção precisa do vetor W utilizando o dW consistente (0.001)
+    # Construção do vetor W dinâmico
     W = np.arange(W0, Massa_cat + dW, dW)
 
-    # Inicialização do histórico de resultados (Session State)
-    if 'results' not in st.session_state:
-        st.session_state['results'] = []
-
-    with col1:
-        # Botão para executar o cálculo e atualizar o gráfico
-        if st.button('Rodar Código'):
-            C = odeint(EDOs, C0, W, args=(q, Temp))
-            st.session_state['results'].append(C)
-            
-            # Mantém apenas os dois últimos históricos de simulação (atual e anterior)
-            if len(st.session_state['results']) > 2:
-                st.session_state['results'] = st.session_state['results'][-2:]
-                
+    # Resolve a EDO automaticamente a cada clique de + ou - (Sem depender de botão!)
+    C = odeint(EDOs, C0, W, args=(q, Temp))
+    
     with col2:
-        if 'results' in st.session_state and len(st.session_state['results']) > 0:
-            # Construção do gráfico interativo via Plotly
-            fig = go.Figure()
-            for i, result in enumerate(st.session_state['results']):
-                opacity = 1.0 if i == len(st.session_state['results']) - 1 else 0.4
-                name_suffix = '' if i == len(st.session_state['results']) - 1 else ' (antigo)'
-                mode = 'lines' if i == len(st.session_state['results']) - 1 else 'markers'
-                
-                fig.add_trace(go.Scatter(x=W, y=result[:, 0], mode=mode, name=f'Ácido Benzóico{name_suffix}', opacity=opacity))
-                fig.add_trace(go.Scatter(x=W, y=result[:, 2], mode=mode, name=f'Etil Benzeno{name_suffix}', opacity=opacity))
-                
-            fig.update_layout(
-                xaxis_title='Catalisador (g)',
-                yaxis_title='Concentração (mol/uL)',
-                legend_title='Componentes',
-                autosize=False,
-                width=1000,   
-                height=600,   
-                font=dict(size=14)  # Tamanho de fonte balanceado para visualização web
-            )
-            st.plotly_chart(fig)
+        # Construção do gráfico interativo via Plotly (Atualiza instantaneamente)
+        fig = go.Figure()
+        fig.add_trace(go.Scatter(x=W, y=C[:, 0], mode='lines', name='Ácido Benzóico'))
+        fig.add_trace(go.Scatter(x=W, y=C[:, 2], mode='lines', name='Etil Benzeno'))
+            
+        fig.update_layout(
+            xaxis_title='Catalisador (g)',
+            yaxis_title='Concentração (mol/uL)',
+            legend_title='Componentes',
+            autosize=False,
+            width=1000,   
+            height=600,   
+            font=dict(size=14)
+        )
+        st.plotly_chart(fig)
 
-            # Geração da Tabela de Dados baseada no último vetor calculado
-            results_df = pd.DataFrame(
-                st.session_state['results'][-1], 
-                columns=["Ácido Benzóico (mol/uL)", "Etanol (mol/uL)", "Etil Benzeno (mol/uL)"]
-            )
-            st.markdown("### Tabela de Concentrações")
-            st.dataframe(results_df, width=1000, height=600)
+        # Geração da Tabela de Dados baseada no valor atual
+        results_df = pd.DataFrame(
+            C, 
+            columns=["Ácido Benzóico (mol/uL)", "Etanol (mol/uL)", "Etil Benzeno (mol/uL)"]
+        )
+        st.markdown("### Tabela de Concentrações")
+        st.dataframe(results_df, width=1000, height=600)
