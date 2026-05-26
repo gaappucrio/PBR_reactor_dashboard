@@ -124,7 +124,7 @@ with tab2:
     col1, col2 = st.columns([3, 7])
     
     with col1:
-        # CORREÇÃO: Adicionado format="%.3f" para o botão + e - responder visualmente com o step decimal
+        # Massa do catalisador configurada com formato decimal explícito
         Massa_cat = st.number_input(
             "Massa de Catalisador (g)", 
             value=0.100, 
@@ -135,11 +135,13 @@ with tab2:
             help='Insira a massa do catalisador em gramas.'
         )
 
+        # SOLUÇÃO AQUI: Adicionado format="%.3f" para destravar os botões + e - do Ácido Benzóico
         CBA0 = st.number_input(
             "Concentração inicial de Ácido Benzóico (mol/uL)", 
             value=1.358, 
             min_value=0.001, 
             step=0.001, 
+            format="%.3f",
             key='cba0', 
             help='Insira a concentração inicial de Ácido Benzóico.'
         )
@@ -178,7 +180,7 @@ with tab2:
         st.session_state['results'] = []
 
     with col1:
-        # VOLTOU: O botão físico para rodar a simulação e salvar o histórico
+        # Intacto: O botão físico para rodar a simulação e salvar o histórico
         if st.button('Rodar Código'):
             C = odeint(EDOs, C0, W, args=(q, Temp))
             st.session_state['results'].append(C)
@@ -188,7 +190,7 @@ with tab2:
                 st.session_state['results'] = st.session_state['results'][-2:]
                 
     with col2:
-        # VOLTOU: O gráfico que compara a curva atual com o tracejado antigo
+        # Intacto: O gráfico que compara a curva atual com o histórico anterior
         if 'results' in st.session_state and len(st.session_state['results']) > 0:
             fig = go.Figure()
             for i, result in enumerate(st.session_state['results']):
