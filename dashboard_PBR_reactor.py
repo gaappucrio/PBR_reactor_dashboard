@@ -138,8 +138,8 @@ with tab2:
         CBA0 = st.number_input(
             "Concentração inicial de Ácido Benzóico (mol/uL)", 
             value=1.358, 
-            min_value=0.100, 
-            step=0.1, 
+            min_value=0.001, 
+            step=0.001, 
             key='cba0', 
             help='Insira a concentração inicial de Ácido Benzóico.'
         )
