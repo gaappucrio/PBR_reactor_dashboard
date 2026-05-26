@@ -124,7 +124,6 @@ with tab2:
     col1, col2 = st.columns([3, 7])
     
     with col1:
-        # Massa do catalisador configurada com formato decimal explícito
         Massa_cat = st.number_input(
             "Massa de Catalisador (g)", 
             value=0.100, 
@@ -135,7 +134,6 @@ with tab2:
             help='Insira a massa do catalisador em gramas.'
         )
 
-        # SOLUÇÃO AQUI: Adicionado format="%.3f" para destravar os botões + e - do Ácido Benzóico
         CBA0 = st.number_input(
             "Concentração inicial de Ácido Benzóico (mol/uL)", 
             value=1.358, 
@@ -180,7 +178,6 @@ with tab2:
         st.session_state['results'] = []
 
     with col1:
-        # Intacto: O botão físico para rodar a simulação e salvar o histórico
         if st.button('Rodar Código'):
             C = odeint(EDOs, C0, W, args=(q, Temp))
             st.session_state['results'].append(C)
@@ -190,16 +187,38 @@ with tab2:
                 st.session_state['results'] = st.session_state['results'][-2:]
                 
     with col2:
-        # Intacto: O gráfico que compara a curva atual com o histórico anterior
         if 'results' in st.session_state and len(st.session_state['results']) > 0:
             fig = go.Figure()
             for i, result in enumerate(st.session_state['results']):
-                opacity = 1.0 if i == len(st.session_state['results']) - 1 else 0.4
-                name_suffix = '' if i == len(st.session_state['results']) - 1 else ' (antigo)'
-                mode = 'lines' if i == len(st.session_state['results']) - 1 else 'markers'
+                # Define se é a curva atual ou o histórico antigo
+                is_current = (i == len(st.session_state['results']) - 1)
                 
-                fig.add_trace(go.Scatter(x=W, y=result[:, 0], mode=mode, name=f'Ácido Benzóico{name_suffix}', opacity=opacity))
-                fig.add_trace(go.Scatter(x=W, y=result[:, 2], mode=mode, name=f'Etil Benzeno{name_suffix}', opacity=opacity))
+                opacity = 1.0 if is_current else 0.4
+                name_suffix = '' if is_current else ' (antigo)'
+                
+                # ALTERAÇÃO: O modo agora é sempre 'lines' para manter tudo como linha contínua ou tracejada
+                # O estilo da linha antiga muda para 'dot' (pontilhado)
+                line_style = 'solid' if is_current else 'dot'
+                
+                # Adiciona a curva do Ácido Benzóico (Travado em Azul)
+                fig.add_trace(go.Scatter(
+                    x=W, 
+                    y=result[:, 0], 
+                    mode='lines', 
+                    name=f'Ácido Benzóico{name_suffix}', 
+                    opacity=opacity,
+                    line=dict(color='blue', dash=line_style) # <-- Configuração de cor e pontilhado
+                ))
+                
+                # Adiciona a curva do Etil Benzeno (Travado em Verde)
+                fig.add_trace(go.Scatter(
+                    x=W, 
+                    y=result[:, 2], 
+                    mode='lines', 
+                    name=f'Etil Benzeno{name_suffix}', 
+                    opacity=opacity,
+                    line=dict(color='green', dash=line_style) # <-- Configuração de cor e pontilhado
+                ))
                 
             fig.update_layout(
                 xaxis_title='Catalisador (g)',
