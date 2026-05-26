@@ -115,7 +115,7 @@ with tab2:
             "Massa de Catalisador (g)", 
             value=0.1, 
             min_value=0.001, 
-            step=0.01, 
+            step=0.001, 
             key='massa_cat', 
             help='Insira a massa do catalisador em gramas.'
         )
