@@ -4,7 +4,6 @@ from scipy.integrate import odeint
 import plotly.graph_objects as go
 import pandas as pd
 
-
 W0 = 0
 dW = 0.001
 k0 = 185.3  # L2/mol.s.g
@@ -19,7 +18,7 @@ def EDOs(C, W, q, T):
     Cw = C[2]
     k = k0 * np.exp(-Ea / (R * (T)))
     # Proteção para evitar divisão por zero se q for muito pequeno
-    if q == 0:
+    if q <= 0:
         return np.zeros(len(C))
         
     r = k * CBA * CEtOH / ((1 + Kw * Cw) ** 2)
@@ -45,7 +44,7 @@ with tab1:
     Imagine um reator tubular. Este tipo em específico leva em consideração que os reagentes são continuamente consumidos a medida que passam através do reator em estado estacionário. 
     </p>
     """, unsafe_allow_html=True)
-    #st.image("C:\\Users\\luan.chagas\\OneDrive - Shell\\Documents\\My Pictures\\Screenshots\\Esquema PFR.png", caption="Esquema simplificado de um reator PFR")
+    
     st.write("""
     <p style='font-size:20px'>
     Ainda é possível considerar que o escoamento é empistonado, ou seja, não há variação da velocidade de fluido com o raio no tubo. Esta simplificação é característica dos reatores tubulares de escoamento empistonado (também chamados PFR). 
@@ -57,6 +56,7 @@ with tab1:
     </p>
     """, unsafe_allow_html=True)
     st.image("https://github.com/amandalemette/ENG1818/blob/6fb679e023faf5918633c3fd921cb7b46d914e29/Imagens/im6.png?raw=true", caption="Esquema simplificado de um reator PBR")
+    
     st.header("O Modelo")
     st.write("""
     <p style='font-size:20px'>
@@ -96,11 +96,13 @@ with tab1:
     st.write("""
     <p style='font-size:20px'>
     Onde a equação acima pode ser usada para determinar a massa W de catalisador necessária para atingir uma conversão X quando a pressão total permanece constante.
+    </p>
     """, unsafe_allow_html=True)
     st.header("Considerações do modelo utilizado")
     st.write("""
     <p style='font-size:20px'>
     Uma das condições do modelo é a garantia da utilização de uma razão molar maior do que 9:1 de etanol/ácido benzóico
+    </p>
     """, unsafe_allow_html=True)
     st.latex(r"r_{BA}=\frac{-kC_{BA}C_{EtOH}}{1+K_WC_W}")
 
@@ -108,28 +110,49 @@ with tab2:
     # Layout com duas colunas, onde o tamanho da col1 é ajustável
     col1, col2 = st.columns([3, 7])
     with col1:
-        # Caixa de texto do Streamlit para 'Massa de Catalisador'
-        st.markdown("Massa de Catalisador (g)", unsafe_allow_html=True)
-        Massa_cat = st.text_input("", "0.1", key='massa_cat', help='Insira a massa do catalisador em gramas.')
-        Massa_cat = float(Massa_cat)
+        # Mudança para number_input: valor mínimo travado em 0.001g para evitar erros na EDO
+        Massa_cat = st.number_input(
+            "Massa de Catalisador (g)", 
+            value=0.1, 
+            min_value=0.001, 
+            step=0.01, 
+            key='massa_cat', 
+            help='Insira a massa do catalisador em gramas.'
+        )
         Massa_Cat_vector = np.arange(W0, Massa_cat + dW, dW)
 
-        # Caixa de texto do Streamlit para 'Concentração inicial de Ácido Benzóico'
-        st.markdown("Concentração inicial de Ácido Benzóico (mol/uL)", unsafe_allow_html=True)
-        CBA0 = st.text_input("", "1.358", key='cba0', help='Insira a concentração inicial de Ácido Benzóico.')
-        CBA0 = float(CBA0)
+        # Mudança para number_input: Concentração inicial não pode ser negativa
+        CBA0 = st.number_input(
+            "Concentração inicial de Ácido Benzóico (mol/uL)", 
+            value=1.358, 
+            min_value=0.0, 
+            step=0.1, 
+            key='cba0', 
+            help='Insira a concentração inicial de Ácido Benzóico.'
+        )
 
-        # Caixa de texto do Streamlit para 'Temperatura'
-        st.markdown("Temperatura (°C)", unsafe_allow_html=True)
-        Temp = st.text_input("", "93.13", key='temp', help='Insira a temperatura em graus Celsius.')
-        Temp = float(Temp) + 273.15  # Converter para Kelvin
+        # Mudança para number_input: Temperatura mínima travada no zero absoluto em °C (-273.15)
+        Temp_C = st.number_input(
+            "Temperatura (°C)", 
+            value=93.13, 
+            min_value=-273.15, 
+            step=1.0, 
+            key='temp', 
+            help='Insira a temperatura em graus Celsius.'
+        )
+        Temp = Temp_C + 273.15  # Converter para Kelvin
         
-        # --- NOVA VARIÁVEL ADICIONADA AQUI ---
-        # Caixa de texto do Streamlit para 'Vazão'
-        st.markdown("Vazão (uL/min)", unsafe_allow_html=True)
-        q_input = st.text_input("", "15", key='vazao', help='Insira a vazão volumétrica em uL/min.')
+        # Mudança para number_input: Vazão não pode ser zero ou negativa para evitar divisão por zero
+        q_input = st.number_input(
+            "Vazão (uL/min)", 
+            value=15.0, 
+            min_value=0.001, 
+            step=1.0, 
+            key='vazao', 
+            help='Insira a vazão volumétrica em uL/min.'
+        )
         # Conversão de uL/min para L/s (conforme constante original)
-        q = float(q_input) / (60 * 1000000) 
+        q = q_input / (60 * 1000000) 
 
     # Condições iniciais para C
     CEtOH0 = 9 * CBA0  # Concentração inicial de CEtOH
@@ -150,6 +173,7 @@ with tab2:
             # Manter apenas os dois últimos resultados
             if len(st.session_state['results']) > 2:
                 st.session_state['results'] = st.session_state['results'][-2:]
+                
     with col2:
         if 'results' in st.session_state and len(st.session_state['results']) > 0:
             # Plotar os resultados usando Plotly
@@ -167,7 +191,7 @@ with tab2:
                 autosize=False,
                 width=1000,   # Aumentar a largura do gráfico
                 height=600,   # Aumentar a altura do gráfico
-                font=dict(size=50)  # Aumentar o tamanho da fonte
+                font=dict(size=14)  # Corrigido: tamanho de fonte realista para layouts web (50 estouraria o layout)
             )
             st.plotly_chart(fig)
 
