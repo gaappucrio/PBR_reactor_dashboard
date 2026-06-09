@@ -55,19 +55,19 @@ with tab1:
     </p>
     """, unsafe_allow_html=True)
 
-    st.latex(r"Entrada - Saída = Acúmulo")
+    st.latex(r"Entrada - Saída + Geração = Acúmulo")
     
     st.write("""
     <p style='font-size:20px'>
-    Para uma espécie química genérica $A$, que neste contexto representa o ácido benzóico ($BA$), a expressão matemática desse balanço é dada por:
+    Para uma espécie química genérica *A*, que neste contexto representa o ácido benzóico (*BA*), a expressão matemática desse balanço é dada por:
     </p>
     """, unsafe_allow_html=True)
 
     st.latex(r"F_{A0} - F_A + G_A = \frac{dN_A}{dt}  \ \ \ \ \ \ \ \ \ \    (Eq. 1)")
     
-    st.write("""
+    st.write(r"""
     <p style='font-size:20px'>
-    Onde $F_{A0}$ é a vazão molar inicial de entrada, $F_A$ é a vazão molar de saída, $G_A$ é a taxa de geração interna do componente e $dN_A/dt$ representa o acúmulo de matéria no sistema ao longo do tempo.
+    Onde *$F_{A0}$* é a vazão molar inicial de entrada, *$F_A$* é a vazão molar de saída, *$G_A$* é a taxa de geração interna do componente e $dN_A/dt$ representa o acúmulo de matéria no sistema ao longo do tempo.
     Sob a condição de estado estacionário (steady-state), as propriedades do sistema tornam-se invariáveis em relação ao tempo, o que anula o termo de acúmulo ($\frac{dN_A}{dt} = 0$), reduzindo a expressão para:
     </p>
     """, unsafe_allow_html=True)
