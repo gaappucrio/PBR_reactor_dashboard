@@ -59,9 +59,11 @@ with tab1:
     
     st.write("""
     <p style='font-size:20px'>
-    Ainda é possível considerar que o escoamento é empistonado, ou seja, não há variação da velocidade de fluido com o raio no tubo. Esta simplificação é característica dos reatores tubulares de escoamento empistonado (também chamados PFR). 
+    Para uma espécie química genérica $A$, que neste contexto representa o ácido benzóico ($BA$), a expressão matemática desse balanço é dada por:
     </p>
     """, unsafe_allow_html=True)
+
+    st.latex(r"F_{A0} - F_A + G_A = \frac{dN_A}{dt}  \ \ \ \ \ \ \ \ \ \    (Eq. 1)")
     
     st.write("""
     <p style='font-size:20px'>
