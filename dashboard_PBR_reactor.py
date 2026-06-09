@@ -57,7 +57,7 @@ with tab1:
 
     st.latex(r"Entrada - Saída + Geração = Acúmulo")
     
-    st.write("""
+    st.write(r"""
     <p style='font-size:20px'>
     Para uma espécie química genérica *A*, que neste contexto representa o ácido benzóico (*BA*), a expressão matemática desse balanço é dada por:
     </p>
