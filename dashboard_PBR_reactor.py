@@ -67,10 +67,11 @@ with tab1:
     
     st.write("""
     <p style='font-size:20px'>
-    A principal diferença entre os reatores envolvendo reações homogêneas e reações PFR (reações heterogêneas) é que no último caso a reação acontece na superfície de um catalisador sólido. Os reatores de leito fixo, ou "packed bed reactor", são reatores cheios com partículas de catalisadores ao longo de toda sua extensão.
+    Onde $F_{A0}$ é a vazão molar inicial de entrada, $F_A$ é a vazão molar de saída, $G_A$ é a taxa de geração interna do componente e $dN_A/dt$ representa o acúmulo de matéria no sistema ao longo do tempo.
+    Sob a condição de estado estacionário (steady-state), as propriedades do sistema tornam-se invariáveis em relação ao tempo, o que anula o termo de acúmulo ($\frac{dN_A}{dt} = 0$), reduzindo a expressão para:
     </p>
     """, unsafe_allow_html=True)
-    st.image("https://github.com/amandalemette/ENG1818/blob/6fb679e023faf5918633c3fd921cb7b46d914e29/Imagens/im6.png?raw=true", caption="Esquema simplificado de um reator PBR")
+    # st.image("https://github.com/amandalemette/ENG1818/blob/6fb679e023faf5918633c3fd921cb7b46d914e29/Imagens/im6.png?raw=true", caption="Esquema simplificado de um reator PBR")
     
     st.header("O Modelo")
     st.write("""
