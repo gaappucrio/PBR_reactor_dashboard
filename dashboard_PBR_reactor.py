@@ -44,9 +44,18 @@ with tab1:
     st.header("O que é um reator PBR (Packed Bed Reactor)")
     st.write("""
     <p style='font-size:20px'>
-    Imagine um reator tubular. Este tipo em específico leva em consideração que os reagentes são continuamente consumidos a medida que passam através do reator em estado estacionário. 
+    A dedução da equação de desempenho para um reator de fluxo ideal em estado estacionário fundamenta-se nos princípios básicos de balanço molar estabelecidos
+    na literatura clássica de engenharia das reações químicas.
     </p>
     """, unsafe_allow_html=True)
+
+    st.write("""
+    <p style='font-size:20px'>
+    O ponto de partida para a modelagem de qualquer reator químico é o balanço molar global em um volume de controle, expresso pela relação fundamental:
+    </p>
+    """, unsafe_allow_html=True)
+
+    st.latex(r"Entrada - Saída = Acúmulo")
     
     st.write("""
     <p style='font-size:20px'>
