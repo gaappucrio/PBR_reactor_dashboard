@@ -55,7 +55,7 @@ with tab1:
     </p>
     """, unsafe_allow_html=True)
 
-    st.latex(r"Entrada - Saída + Geração = Acúmulo")
+    st.latex(r"Entrada - Saída + Geracão = Acúmulo")
     
     st.write(r"""
     <p style='font-size:20px'>
