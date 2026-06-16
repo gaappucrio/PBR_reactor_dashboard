@@ -175,7 +175,7 @@ with tab1:
     st.write(r"""
     <p style='font-size:20px'>
     A equação demonstra rigorosamente que o perfil de concentração do reagente ao longo do leito catalítico é governado de forma direta 
-    pela cinética química local ($r'_{BA}$) e inversamente proporcional à velocidade de transporte volumétrico do fluido ($\𝓥$) através do sistema.
+    pela cinética química local (<i>r'<sub>BA</sub></i>) e inversamente proporcional à velocidade de transporte volumétrico do fluido (𝓥) através do sistema.
     </p>
     """, unsafe_allow_html=True)
     
