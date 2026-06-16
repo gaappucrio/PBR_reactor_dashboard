@@ -179,7 +179,7 @@ with tab1:
     </p>
     """, unsafe_allow_html=True)
     
-    st.latex(r"r_{BA}=\frac{-kC_{BA}C_{EtOH}}{1+K_WC_W}")
+    st.latex(r"r'_{BA}=\frac{-kC_{BA}C_{EtOH}}{1+K_WC_W}")
 
 
 # --- ABA 2: SIMULAÇÃO DO REATOR ---
