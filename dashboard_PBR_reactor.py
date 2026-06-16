@@ -117,7 +117,7 @@ with tab1:
     </p>
     """, unsafe_allow_html=True)
 
-     # st.image("https://github.com/amandalemette/ENG1818/blob/6fb679e023faf5918633c3fd921cb7b46d914e29/Imagens/im6.png?raw=true", caption="Esquema simplificado de um reator PBR")
+    st.image("https://github.com/gaappucrio/PBR_reactor_dashboard/blob/main/PBR%20Reactor.png", caption="Esquema simplificado de um reator PBR")
     
     st.write(r"""
     <p style='font-size:20px'>
