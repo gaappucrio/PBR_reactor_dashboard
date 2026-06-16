@@ -71,7 +71,7 @@ with tab1:
     Sob a condição de estado estacionário (steady-state), as propriedades do sistema tornam-se invariáveis em relação ao tempo, o que anula o termo de acúmulo (<i>dN<sub>A</sub></i>/dt = 0), reduzindo a expressão para:
     </p>
     """, unsafe_allow_html=True)
-    # st.image("https://github.com/amandalemette/ENG1818/blob/6fb679e023faf5918633c3fd921cb7b46d914e29/Imagens/im6.png?raw=true", caption="Esquema simplificado de um reator PBR")
+   
     st.latex(r"F_{A0} - F_A + G_A = 0")
 
     st.write(r"""
@@ -117,6 +117,8 @@ with tab1:
     </p>
     """, unsafe_allow_html=True)
 
+     # st.image("https://github.com/amandalemette/ENG1818/blob/6fb679e023faf5918633c3fd921cb7b46d914e29/Imagens/im6.png?raw=true", caption="Esquema simplificado de um reator PBR")
+    
     st.write(r"""
     <p style='font-size:20px'>
     Essa distinção física exige uma mudança de variável no balanço de massa. Em vez de monitorar o consumo do reagente a cada elemento de volume diferencial ($dV$),
