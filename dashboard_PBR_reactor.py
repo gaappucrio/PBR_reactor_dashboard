@@ -72,62 +72,7 @@ with tab1:
     </p>
     """, unsafe_allow_html=True)
     # st.image("https://github.com/amandalemette/ENG1818/blob/6fb679e023faf5918633c3fd921cb7b46d914e29/Imagens/im6.png?raw=true", caption="Esquema simplificado de um reator PBR")
-    
-    st.header("O Modelo")
-    st.write("""
-    <p style='font-size:20px'>
-    Para entender a equação de projeto para reatores PBR é necessário primeiro entender como é formulada a equação para reatores PFR. A modelagem de um reator tubular parte da premissa de que o fluido tenha um escoamento empistonado, ou seja, sem gradientes de concentração, de temperatura ou de velocidade de reação. À medida que os reagentes entram e escoam axialmente ao longo do reator, eles são consumidos e a conversão aumenta ao longo do comprimento do reator. Para desenvolver a equação de projeto do PFR, é necessário multiplicar ambos os lados da seguinte equação por -1:
-    </p>
-    """, unsafe_allow_html=True)
-    st.latex(r"\frac{dF_A}{dV} = r_A \rightarrow \frac{-dF_A}{dV} = -r_A  \ \ \ \ \ \ \ \ \ \    (Eq. 1)")
-    
-    st.write("""
-    <p style='font-size:20px'>
-    Para um sistema em escoamento, FA tem sido previamente dada em termos da vazão molar de entrada FA0 e da conversão X:
-    </p>
-    """, unsafe_allow_html=True)
-    st.latex(r"dF_A = F_{A0} - F_{A0} X \ \ \ \ \ \ (Eq.2)")
-    
-    st.write("""
-    <p style='font-size:20px'>
-    E substituindo em Eq. 1 obtém-se a forma diferencial da equação de projeto para um reator com escoamento empistonado (PFR):
-    </p>
-    """, unsafe_allow_html=True)
-    st.latex(r"F_{A0}\frac{dX}{dV}=-r_A \ \ \ \ \ \ (Eq.3)")
-    
-    st.write("""
-    <p style='font-size:20px'>
-    Agora, separamos as variáveis e integramos com os limites V=0 quando X=0 para obter o volume necessário para o reator com escoamento empistonado de modo a atingir uma conversão especificada X:
-    </p>
-    """, unsafe_allow_html=True)
-    st.latex(r"V = F_{A0}\int_{0}^{X}\frac{dX}{-r_A}(Eq.4)")
-    
-    st.write("""
-    <p style='font-size:20px'>
-    A dedução das equações de projeto para reatores de leito fixo é análoga à dedução para um PFR. Reatores de leito fixo são tubulares e cheios de partículas. Substituindo FA da Eq.2 na equação:
-    </p>
-    """, unsafe_allow_html=True)
-    st.latex(r"\frac{dF_A}{dW}=r_A")
-    
-    st.write("""
-    <p style='font-size:20px'>
-    De modo a obter:
-    </p>
-    """, unsafe_allow_html=True)
-    st.latex(r"W = F_{A0}\int_{0}^{X}\frac{dX}{-r_A}")
-    
-    st.write("""
-    <p style='font-size:20px'>
-    Onde a equação acima pode ser usada para determinar a massa W de catalisador necessária para atingir uma conversão X quando a pressão total permanece constante.
-    </p>
-    """, unsafe_allow_html=True)
-    
-    st.header("Considerações do modelo utilizado")
-    st.write("""
-    <p style='font-size:20px'>
-    Uma das condições do modelo é a garantia da utilização de uma razão molar maior do que 9:1 de etanol/ácido benzóico.
-    </p>
-    """, unsafe_allow_html=True)
+    st.latex(r"F_{A0} - F_A + G_A = 0")
     st.latex(r"r_{BA}=\frac{-kC_{BA}C_{EtOH}}{1+K_WC_W}")
 
 
