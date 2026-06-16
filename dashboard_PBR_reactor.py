@@ -125,7 +125,7 @@ with tab1:
     </p>
     """, unsafe_allow_html=True)
 
-    st.latex(r"F_{BA} = C_{BA} \cdot \𝓥")
+    st.latex(r"F_{BA} = C_{BA} \𝓥")
 
     st.write(r"""
     <p style='font-size:20px'>
