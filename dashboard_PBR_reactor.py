@@ -73,6 +73,51 @@ with tab1:
     """, unsafe_allow_html=True)
     # st.image("https://github.com/amandalemette/ENG1818/blob/6fb679e023faf5918633c3fd921cb7b46d914e29/Imagens/im6.png?raw=true", caption="Esquema simplificado de um reator PBR")
     st.latex(r"F_{A0} - F_A + G_A = 0")
+
+    st.write(r"""
+    <p style='font-size:20px'>
+    Diferente de reatores de mistura perfeita, onde a concentração é homogênea em todo o espaço, o PFR apresenta um perfil contínuo de variação de concentração ao longo do seu comprimento.
+    Devido a essa natureza distribuída, o balanço deve ser aplicado a um elemento de volume diferencial ($dV$). Dentro desse elemento, a taxa de geração diferencial é definida pelo produto 
+    da taxa de reação volumétrica ($r_A$) pelo próprio diferencial de volume ($dV$):
+    </p>
+    """, unsafe_allow_html=True)
+
+    st.latex(r"dG_A = r_A dV")
+
+    st.write(r"""
+    <p style='font-size:20px'>
+    Ao aplicar o balanço molar estrito a essa seção infinitesimal, onde a vazão molar que entra é <i>F<sub>A</sub></i> e a que sai é <i>F<sub>A</sub></i> + <i>dF<sub>A</sub></i>, obtém-se:
+    </p>
+    """, unsafe_allow_html=True)
+
+    st.latex(r"F_A - (F_A + dF_A) + r_A dV = 0")
+    st.latex(r"-dF_A + r_A dV = 0")
+    
+    st.write(r"""
+    <p style='font-size:20px'>
+    Isolando os termos diferenciais, estabelece-se a equação diferencial clássica de um PFR ideal:
+    </p>
+    """, unsafe_allow_html=True)
+
+    st.latex(r"\frac{dF_A}{dV} = r_A")
+
+    st.write(r"""
+    <p style='font-size:20px'>
+    No sistema experimental estudado no artigo, caracterizado como um bead string reactor, o escoamento ocorre através de um leito empacotado com esferas do catalisador sólido Amberlyst-15. 
+    Em processos de catálise heterogênea, a reação química processa-se nos sítios ativos localizados na superfície e nos poros do sólido. Por convenção analítica, a taxa de reação é expressa 
+    em termos de massa de catalisador ($r'_A$, em mols reagidos por unidade de massa de catalisador por tempo) em vez de volume de fluido.
+    </p>
+    """, unsafe_allow_html=True)
+
+    st.write(r"""
+    <p style='font-size:20px'>
+    A conversão matemática do elemento de volume (dV) para o elemento de massa de catalisador (dW) é feita por meio da relação com a densidade aparente do leito (<i>rho<sub>b</sub></i>), onde 
+    dW = <i>rho<sub>b</sub></i> dV. Substituindo essa equivalência na equação de desempenho e adaptando a nomenclatura para o ácido benzóico (BA), a expressão assume a forma:
+    </p>
+    """, unsafe_allow_html=True)
+
+    st.latex(r"\frac{dF_{BA}}{dW} = r'_{BA}")
+    
     st.latex(r"r_{BA}=\frac{-kC_{BA}C_{EtOH}}{1+K_WC_W}")
 
 
