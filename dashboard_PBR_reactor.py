@@ -67,7 +67,7 @@ with tab1:
   
     st.write(r"""
     <p style='font-size:20px'>
-    Onde *$F_{A0}$* é a vazão molar inicial de entrada, *$F_A$* é a vazão molar de saída, *$G_A$* é a taxa de geração interna do componente e $dN_A/dt$ representa o acúmulo de matéria no sistema ao longo do tempo.
+    Onde <i>F<sub>A0</sub></i> é a vazão molar inicial de entrada, *$F_A$* é a vazão molar de saída, *$G_A$* é a taxa de geração interna do componente e $dN_A/dt$ representa o acúmulo de matéria no sistema ao longo do tempo.
     Sob a condição de estado estacionário (steady-state), as propriedades do sistema tornam-se invariáveis em relação ao tempo, o que anula o termo de acúmulo ($\frac{dN_A}{dt} = 0$), reduzindo a expressão para:
     </p>
     """, unsafe_allow_html=True)
