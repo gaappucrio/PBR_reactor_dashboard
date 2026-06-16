@@ -101,7 +101,7 @@ with tab1:
 
     st.latex(r"\frac{dF_A}{dV} = r_A")
 
-     st.write(r"""
+    st.write(r"""
     <p style='font-size:20px'>
     No entanto, quando o processo deixa de ser homogêneo e passa a envolver uma reação catalisada
     por um sólido, a literatura de engenharia química introduz uma variação desse modelo: o Reator de Leito Empacotado (Packed-Bed Reactor – PBR).
