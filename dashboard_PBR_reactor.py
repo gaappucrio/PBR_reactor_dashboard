@@ -59,7 +59,7 @@ with tab1:
     
     st.write(r"""
     <p style='font-size:20px'>
-    Para uma espécie química genérica *A*, que neste contexto representa o ácido benzóico (*BA*), a expressão matemática desse balanço é dada por:
+    Para uma espécie química genérica A, que neste contexto representa o ácido benzóico (BA), a expressão matemática desse balanço é dada por:
     </p>
     """, unsafe_allow_html=True)
 
@@ -100,6 +100,32 @@ with tab1:
     """, unsafe_allow_html=True)
 
     st.latex(r"\frac{dF_A}{dV} = r_A")
+
+     st.write(r"""
+    <p style='font-size:20px'>
+    No entanto, quando o processo deixa de ser homogêneo e passa a envolver uma reação catalisada
+    por um sólido, a literatura de engenharia química introduz uma variação desse modelo: o Reator de Leito Empacotado (Packed-Bed Reactor – PBR).
+    </p>
+    """, unsafe_allow_html=True)
+
+    st.write(r"""
+    <p style='font-size:20px'>
+    Embora ambos os reatores compartilhem exatamente a mesma hipótese fluidodinâmica de escoamento — o modelo de fluxo em pistão ideal, caracterizado
+    por um perfil de velocidade plano e ausência de mistura axial —, a diferença fundamental entre o PFR e o PBR reside na coordenada espacial utilizada
+    para o dimensionamento e na definição da taxa de reação. Enquanto no PFR assume-se que a reação ocorre de forma homogênea ao longo do volume de fluido (V),
+    no PBR a reação é heterogênea e processa-se estritamente nos sítios ativos localizados na massa do catalisador sólido (W).
+    </p>
+    """, unsafe_allow_html=True)
+
+    st.write(r"""
+    <p style='font-size:20px'>
+    Essa distinção física exige uma mudança de variável no balanço de massa. Em vez de monitorar o consumo do reagente a cada elemento de volume diferencial ($dV$),
+    passa-se a contabilizar a conversão a cada elemento diferencial de massa de catalisador ($dW$). A ponte matemática entre os dois conceitos é estabelecida pela
+    densidade aparente do leito empacotado (<i>ρ<sub>B</sub></i>), através da relação dW = <i>ρ<sub>B</sub></i>.dV. Dessa forma, a taxa de reação volumétrica (<i>r<sub>A</sub></i>, em mols/volume·tempo)
+    é substituída pela taxa de reação específica ($<i>r'<sub>A</sub></i>$, em mols/massa de catalisador·tempo), mantendo a mesma estrutura matemática linear do fluxo em pistão, mas
+    perfeitamente adaptada para sistemas com catalisadores sólidos.
+    </p>
+    """, unsafe_allow_html=True)
 
     st.write(r"""
     <p style='font-size:20px'>
