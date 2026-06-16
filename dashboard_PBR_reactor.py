@@ -121,10 +121,10 @@ with tab1:
     
     st.write(r"""
     <p style='font-size:20px'>
-    Essa distinção física exige uma mudança de variável no balanço de massa. Em vez de monitorar o consumo do reagente a cada elemento de volume diferencial ($dV$),
-    passa-se a contabilizar a conversão a cada elemento diferencial de massa de catalisador ($dW$). A ponte matemática entre os dois conceitos é estabelecida pela
+    Essa distinção física exige uma mudança de variável no balanço de massa. Em vez de monitorar o consumo do reagente a cada elemento de volume diferencial (dV),
+    passa-se a contabilizar a conversão a cada elemento diferencial de massa de catalisador (dW). A ponte matemática entre os dois conceitos é estabelecida pela
     densidade aparente do leito empacotado (<i>ρ<sub>B</sub></i>), através da relação dW = <i>ρ<sub>B</sub></i>.dV. Dessa forma, a taxa de reação volumétrica (<i>r<sub>A</sub></i>, em mols/volume·tempo)
-    é substituída pela taxa de reação específica ($<i>r'<sub>A</sub></i>$, em mols/massa de catalisador·tempo), mantendo a mesma estrutura matemática linear do fluxo em pistão, mas
+    é substituída pela taxa de reação específica (<i>r'<sub>A</sub></i>, em mols/massa de catalisador·tempo), mantendo a mesma estrutura matemática linear do fluxo em pistão, mas
     perfeitamente adaptada para sistemas com catalisadores sólidos.
     </p>
     """, unsafe_allow_html=True)
@@ -133,7 +133,7 @@ with tab1:
     <p style='font-size:20px'>
     No sistema experimental estudado no artigo, caracterizado como um bead string reactor, o escoamento ocorre através de um leito empacotado com esferas do catalisador sólido Amberlyst-15. 
     Em processos de catálise heterogênea, a reação química processa-se nos sítios ativos localizados na superfície e nos poros do sólido. Por convenção analítica, a taxa de reação é expressa 
-    em termos de massa de catalisador ($r'_A$, em mols reagidos por unidade de massa de catalisador por tempo) em vez de volume de fluido.
+    em termos de massa de catalisador (<i>r'<sub>A</sub></i>, em mols reagidos por unidade de massa de catalisador por tempo) em vez de volume de fluido.
     </p>
     """, unsafe_allow_html=True)
 
@@ -149,7 +149,7 @@ with tab1:
     st.write(r"""
     <p style='font-size:20px'>
     Para alinhar o modelo matemático às técnicas de monitoramento analítico de bancada, como a cromatografia líquida de alta eficiência (HPLC),
-    substitui-se a variável de vazão molar ($F_{BA}$) pela concentração molar correspondente ($C_{BA}$). A relação fundamental entre essas grandezas é dada por:
+    substitui-se a variável de vazão molar (<i>F<sub>BA</sub></i>) pela concentração molar correspondente (<i>C<sub>BA</sub></i>). A relação fundamental entre essas grandezas é dada por:
     </p>
     """, unsafe_allow_html=True)
 
