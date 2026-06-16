@@ -70,7 +70,7 @@ with tab1:
     Onde <i>F<sub>A0</sub></i> é a vazão molar inicial de entrada, <i>F<sub>A</sub></i> é a vazão molar de saída, <i>G<sub>A</sub></i> é a taxa de geração interna do componente e $dN_A/dt$ representa o acúmulo de matéria no sistema ao longo do tempo.
     Sob a condição de estado estacionário (steady-state), as propriedades do sistema tornam-se invariáveis em relação ao tempo, o que anula o termo de acúmulo ($\frac{dN}{dt}$ = 0$), reduzindo a expressão para:
     </p>
-    """, unsafe_allow_html=True)
+    """, unsafe_allow_html=True) + st.latex(r"\frac{dN_A}{dt} = 0")
     # st.image("https://github.com/amandalemette/ENG1818/blob/6fb679e023faf5918633c3fd921cb7b46d914e29/Imagens/im6.png?raw=true", caption="Esquema simplificado de um reator PBR")
     
     st.header("O Modelo")
