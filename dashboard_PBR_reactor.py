@@ -111,12 +111,45 @@ with tab1:
 
     st.write(r"""
     <p style='font-size:20px'>
-    A conversão matemática do elemento de volume (dV) para o elemento de massa de catalisador (dW) é feita por meio da relação com a densidade aparente do leito (<i>rho<sub>b</sub></i>), onde 
-    dW = <i>rho<sub>b</sub></i> dV. Substituindo essa equivalência na equação de desempenho e adaptando a nomenclatura para o ácido benzóico (BA), a expressão assume a forma:
+    A conversão matemática do elemento de volume (dV) para o elemento de massa de catalisador (dW) é feita por meio da relação com a densidade aparente do leito (<i>ρ<sub>b</sub></i>), onde 
+    dW = <i>ρ<sub>b</sub></i> dV. Substituindo essa equivalência na equação de desempenho e adaptando a nomenclatura para o ácido benzóico (BA), a expressão assume a forma:
     </p>
     """, unsafe_allow_html=True)
 
     st.latex(r"\frac{dF_{BA}}{dW} = r'_{BA}")
+
+    st.write(r"""
+    <p style='font-size:20px'>
+    Para alinhar o modelo matemático às técnicas de monitoramento analítico de bancada, como a cromatografia líquida de alta eficiência (HPLC),
+    substitui-se a variável de vazão molar ($F_{BA}$) pela concentração molar correspondente ($C_{BA}$). A relação fundamental entre essas grandezas é dada por:
+    </p>
+    """, unsafe_allow_html=True)
+
+    st.latex("F_{BA} = C_{BA} \cdot \𝓥")
+
+    st.write(r"""
+    <p style='font-size:20px'>
+    Por ser uma constante fluidodinâmica, a vazão volumétrica pode ser extraída do operador diferencial:
+    </p>
+    """, unsafe_allow_html=True)
+
+    st.latex(r"𝓥\ \cdot \frac{dC_{BA}}{dW} = r'_{BA}")
+
+    st.write(r"""
+    <p style='font-size:20px'>
+    Através do rearranjo algébrico final, isola-se o gradiente de concentração em função da massa de catalisador, 
+    resultando exatamente na equação de desempenho utilizada no artigo científico:
+    </p>
+    """, unsafe_allow_html=True)
+
+    st.latex(r"\frac{dC_{BA}}{dW} = \frac{r'_{BA}}{\nu}")
+
+    st.write(r"""
+    <p style='font-size:20px'>
+    A equação demonstra rigorosamente que o perfil de concentração do reagente ao longo do leito catalítico é governado de forma direta 
+    pela cinética química local ($r'_{BA}$) e inversamente proporcional à velocidade de transporte volumétrico do fluido ($\𝓥$) através do sistema.
+    </p>
+    """, unsafe_allow_html=True)
     
     st.latex(r"r_{BA}=\frac{-kC_{BA}C_{EtOH}}{1+K_WC_W}")
 
