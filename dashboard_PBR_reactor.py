@@ -181,6 +181,94 @@ with tab1:
     
     st.latex(r"r'_{BA}=\frac{-kC_{BA}C_{EtOH}}{1+K_WC_W}")
 
+    st.write(r"""
+    <p style='font-size:20px'>
+    A determinação da lei de velocidade para a esterificação do ácido benzóico fundamentou-se na avaliação sistemática de quatro modelos cinéticos candidatos
+    (M1 a M4), variando desde uma lei de potência simples até mecanismos complexos de Langmuir-Hinshelwood.
+    </p>
+    """, unsafe_allow_html=True)
+    
+    st.write(r"""
+    <p style='font-size:20px'>
+    O processo de seleção e parametrização desenvolveu-se através de duas frentes estatísticas principais:
+    </p>
+    """, unsafe_allow_html=True)
+    
+    st.write(r"""
+    <p style='font-size:20px'>
+    Eliminação dos modelos M3 e M4: Embora todos os modelos passassem inicialmente nos testes estatísticos com os dados preliminares,
+    os modelos de maior complexidade matemática (M3, de 4 parâmetros; e M4, de 6 parâmetros) demonstraram-se praticamente não-identificáveis
+    quando submetidos a uma campanha simulada de 64 experimentos. Os valores de $t$ de Student para os parâmetros de adsorção dessas estruturas
+    situaram-se abaixo do limite crítico ($t_{\text{ref}} = 1{,}657$), indicando que o erro analítico do sistema inviabilizava a estimação única
+    de tantas variáveis correlacionadas.
+    </p>
+    """, unsafe_allow_html=True)
+
+    st.write(r"""
+    <p style='font-size:20px'>
+    Eliminação do modelo M1: Com a rejeição de M3 e M4, os modelos remanescentes M1 e M2 foram testados através de experimentos automatizados de
+    discriminação em malha fechada. Com apenas um experimento otimizado, o modelo M1 (lei de potência simples) foi rejeitado por falhar no teste de
+    qualidade do ajuste $x^2$ de 95% (alcançando o valor de 35,4 contra um limite de referência de 26,3).
+    </p>
+    """, unsafe_allow_html=True)
+
+    st.write(r"""
+    <p style='font-size:20px'>
+    O modelo M2 demonstrou-se estatisticamente adequado ($x^2 = 13{,}5$), consolidando-se como a única estrutura capaz de prever o comportamento 
+    reacional de forma simplificada e robusta.  
+    </p>
+    """, unsafe_allow_html=True)
+
+    st.write(r"""
+    <p style='font-size:20px'>
+    Para estimar os parâmetros de M2 de forma precisa e sem a severa correlação matemática original da equação de Arrhenius, a constante de taxa 
+    de reação ($k$) foi expressa em sua forma reparametrizada em torno de uma temperatura média de referência ($T_M = 378{,}15 \text{ K}$):
+    </p>
+    """, unsafe_allow_html=True)
+
+    st.latex(r"k = \exp\left( -KP_1 - \frac{KP_2 \times 10\,000}{R} \times \left[ \frac{1}{T} - \frac{1}{T_M} \right] \right)")
+
+    st.write(r"""
+    <p style='font-size:20px'>
+    Após a execução de 8 experimentos online focados estritamente no aumento da precisão dos parâmetros (via critério D-otimal),
+    os intervalos de confiança de $KP_1$, $KP_2$ e da constante de adsorção da água ($K_W$) foram drasticamente reduzidos.
+    </p>
+    """, unsafe_allow_html=True)
+
+    st.write(r"""
+    <p style='font-size:20px'>
+    Convertendo essas estimativas reparametrizadas de volta aos termos físicos tradicionais, chegou-se à equação de taxa de velocidade final utilizada no artigo:
+    </p>
+    """, unsafe_allow_html=True)
+
+    st.latex(r"-r'_{BA} = \frac{185{,}3 \exp\left(-\frac{68\,800}{RT}\right) C_{BA} C_{EtOH}}{(1 + 0{,}53 C_W)^2}")
+    
+    st.write(r"""
+    <p style='font-size:20px'>
+    Onde:
+    </p>
+    """, unsafe_allow_html=True)
+
+    st.write(r"""
+    <p style='font-size:20px'>
+    Fator Pré-exponencial ($k_0$): $185{,}3 \text{ L}^2/(\text{g}_{\text{cat}} \cdot \text{s} \cdot \text{mol})$, 
+    indicando a frequência de colisões efetivas na superfície do catalisador.
+    </p>
+    """, unsafe_allow_html=True)
+
+    st.write(r"""
+    <p style='font-size:20px'>
+    Energia de Ativação Aparente (<i>E<sub>a</sub></i>): $68\,800 \text{ J/mol}$ (ou $68{,}8 \text{ kJ/mol}$), valor altamente 
+    consistente com dados independentes previamente validados na literatura (69{,}1 \pm 0{,}5 \text{ kJ/mol}).
+    </p>
+    """, unsafe_allow_html=True)
+
+    st.write(r"""
+    <p style='font-size:20px'>
+    Constante de Adsorção da Água (<i>K<sub>W</sub></i>): 0,53 L/mol, termo que quantifica matematicamente o efeito 
+    inibidor promovido pela água gerada ao longo da reação, a qual compete diretamente com os reagentes pelos sítios ativos da resina Amberlyst-15.
+    </p>
+    """, unsafe_allow_html=True)
 
 # --- ABA 2: SIMULAÇÃO DO REATOR ---
 with tab2:
