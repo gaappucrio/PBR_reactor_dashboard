@@ -54,7 +54,7 @@ with tab1:
     st.write("""
     <p style='font-size:20px'>
     A reação em questão é a etilação de ácido benzóico em benzoato de etila, um composto muito comum na industria de aromas (usado como tom "adocicado" em perfumes) ou como 
-    aromatizante artificial já que seu cheiro remete à furtas como cereja ou melão. Além disso é usado como solvente industrial para vários tipos de celuloses, resinas e tambem como
+    aromatizante artificial já que seu cheiro remete à frutas como cereja ou melão. Além disso é usado como solvente industrial para vários tipos de celuloses, resinas e tambem como
     agente plastificante.
     </p>
     """, unsafe_allow_html=True)
