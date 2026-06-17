@@ -41,7 +41,7 @@ tab1, tab2 = st.tabs(["Embasamento Teórico", "Reator"])
 
 # --- ABA 1: CONTEXTO TEÓRICO ---
 with tab1:
-    st.header("O que é um reator PBR (Packed Bed Reactor)")
+    st.header("Entendendo o reator e o modelo!")
     st.write("""
     <p style='font-size:20px'>
     A dedução da equação de desempenho para um reator de fluxo ideal em estado estacionário fundamenta-se nos princípios básicos de balanço molar estabelecidos
