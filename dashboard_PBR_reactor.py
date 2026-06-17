@@ -63,7 +63,7 @@ with tab1:
     </p>
     """, unsafe_allow_html=True)
 
-    st.latex(r"F_{A0} - F_A + G_A = \frac{dN_A}{dt}  \ \ \ \ \ \ \ \ \ \    (Eq. 1)")
+    st.latex(r"F_{A0} - F_A + G_A = \frac{dN_A}{dt}")
   
     st.write(r"""
     <p style='font-size:20px'>
