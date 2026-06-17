@@ -59,7 +59,7 @@ with tab1:
     </p>
     """, unsafe_allow_html=True)
 
-     st.image("https://raw.githubusercontent.com/gaappucrio/PBR_reactor_dashboard/refs/heads/main/PBR%20Reactor.png", caption="Esquema simplificado de um reator PBR")
+     st.image("https://raw.githubusercontent.com/gaappucrio/PBR_reactor_dashboard/refs/heads/main/Esterification_Reaction.png", caption="Reação de esterificação de ácido benzóico em benzoato de etila")
     
     st.header("Entendendo o reator e o modelo!")
     st.write("""
